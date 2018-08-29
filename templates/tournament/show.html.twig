@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tournament{% endblock %}
+
+{% block body %}
+    <h1>Tournament</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Organisateur</th>
+                <td>{{ tournament.organizer.acronym }} - {{ tournament.organizer.name }}</td>
+            </tr>
+            <tr>
+                <th>StartDate</th>
+                <td>{{ tournament.startDate ? tournament.startDate|date('d-m-Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EndDate</th>
+                <td>{{ tournament.endDate ? tournament.endDate|date('d-m-Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ tournament.type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row">   
+        <section class="col-md-6">
+            <h3>Pelotons</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Peleton</th>
+                        <th>Début compétition</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for peloton in tournament.pelotons %}
+                    <tr>
+                        <td>#{{ loop.index }}</td>
+                        <td>{{ peloton.starttime|date('d-m-Y H:i') }}</td>
+                        <td>S'inscrire</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="2">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ path('peloton_new', {'tournament': tournament.id}) }}">Create new</a>
+        </section>     
+        <section class="col-md-6">
+            <h3>Liste des participants</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Club</th>
+                        <th>Numéro d'affiliation</th>
+                        <th>Full Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for peloton in tournament.pelotons %}
+                {% for participant in peloton.participants | reverse %}
+                    <tr>
+                        <td>{{ participant.archer.club.name }}</td>
+                        <td>{{ participant.archer.affiliation.affiliatenumber }}</td>
+                        <td>{{ participant.archer.fullname}}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3">no records found</td>
+                    </tr>
+                {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <a href="{{ path('tournament_index') }}">back to list</a>
+
+    <a href="{{ path('tournament_edit', {'id': tournament.id}) }}">edit</a>
+
+    {{ include('tournament/_delete_form.html.twig') }}
+{% endblock %}

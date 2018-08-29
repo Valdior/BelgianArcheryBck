@@ -1,0 +1,28 @@
+{
+    "devDependencies": {
+        "@fortawesome/fontawesome-pro": "^5.1.0-4",
+        "@symfony/webpack-encore": "^0.20.1",
+        "node-sass": "^4.9.0",
+        "sass-loader": "^7.0.3"
+    },
+    "name": "myarchery",
+    "author": "Valdior",
+    "license": "MIT",
+    "private": true,
+    "version": "1.0.0",
+    "description": "Test into Symfony4",
+    "dependencies": {
+        "@fortawesome/fontawesome": "^1.1.8",
+        "@fortawesome/fontawesome-pro-light": "^5.0.13",
+        "@fortawesome/fontawesome-pro-regular": "^5.0.13",
+        "@fortawesome/fontawesome-pro-solid": "^5.0.13",
+        "bootstrap-sass": "^3.3.7",
+        "jquery": "^3.3.1"
+    },
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production"
+    }
+}
