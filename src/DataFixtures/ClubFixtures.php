@@ -11,6 +11,7 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
 {
     public const CLUB_LIE = "club-lie";
     public const CLUB_ITW = "club-itw";
+    public const CLUB_ACG = "club-acg";
     
     public function load(ObjectManager $manager)
     {
@@ -20,6 +21,8 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
         $club->setNumber(401);
         $club->setRegion($this->getReference(RegionFixtures::REGION_LIEGE));
         $manager->persist($club);
+
+        $this->addReference(self::CLUB_ACG, $club);
 
         $club = new Club();
         $club->setName("Compagnie des Archers de Huy");
