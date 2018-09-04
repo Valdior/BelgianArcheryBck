@@ -69,6 +69,7 @@
                     <tr>
                         <td>{{ tournament.startdate | date("d/m/y") }}</td>
                         <td>{{ tournament.enddate | date("d/m/y") }}</td>
+                        <td>{{ tournament.listparticipants | length }}</td>
                         <td>M'inscrire</td>
                     </tr>
                 {% else %}

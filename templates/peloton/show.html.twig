@@ -26,9 +26,33 @@
         </tbody>
     </table>
 
-    <a href="{{ path('peloton_index') }}">back to list</a>
+    <table class="table">
+       <thead>
+            <tr>
+                <th>Club</th>
+                <th>Peloton</th>
+                <th>Full Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for participant in peloton.participants %}
+            <tr>
+            {% set foo = participant.archer.affiliations|reverse|first %}
+                <td>{{ foo.club.acronym }}</td>
+                <td>{{ participant.peloton }}</td>
+                <td>{{ participant.archer.fullname }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    <a href="{{ path('peloton_edit', {'id': peloton.id}) }}">edit</a>
+    <a href="{{ path('tournament_show', {'id': peloton.tournament.id}) }}">back to list</a>
+
+    <a href="{{ path('peloton_edit', {'tournament' : peloton.tournament.id, 'id': peloton.id}) }}">edit</a>
 
     {{ include('peloton/_delete_form.html.twig') }}
 {% endblock %}

@@ -34,6 +34,7 @@
                     <tr>
                         <th>Peleton</th>
                         <th>Début compétition</th>
+                        <th>Type</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -42,11 +43,12 @@
                     <tr>
                         <td>#{{ loop.index }}</td>
                         <td>{{ peloton.starttime|date('d-m-Y H:i') }}</td>
-                        <td>S'inscrire</td>
+                        <td>{{ peloton.type }}</td>
+                        <td><a href="{{ path('peloton_show', {'tournament': tournament.id, 'id' : peloton.id}) }}" >Show</a> S'inscrire</td>
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="2">no records found</td>
+                        <td colspan="4">no records found</td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -59,23 +61,22 @@
                 <thead>
                     <tr>
                         <th>Club</th>
-                        <th>Numéro d'affiliation</th>
+                        <th>Peloton</th>
                         <th>Full Name</th>
                     </tr>
                 </thead>
                 <tbody>
-                {% for peloton in tournament.pelotons %}
-                {% for participant in peloton.participants | reverse %}
+                {% for participant in tournament.listparticipants %}
                     <tr>
-                        <td>{{ participant.archer.club.name }}</td>
-                        <td>{{ participant.archer.affiliation.affiliatenumber }}</td>
-                        <td>{{ participant.archer.fullname}}</td>
+                    {% set foo = participant.archer.affiliations|reverse|first %}
+                        <td>{{ foo.club.acronym }}</td>
+                        <td>{{ participant.peloton }}</td>
+                        <td>{{ participant.archer.fullname }}</td>
                     </tr>
                 {% else %}
                     <tr>
                         <td colspan="3">no records found</td>
                     </tr>
-                {% endfor %}
                 {% endfor %}
                 </tbody>
             </table>

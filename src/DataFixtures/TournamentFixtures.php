@@ -7,7 +7,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class TournamentFixtures extends Fixture  implements DependentFixtureInterface
+class TournamentFixtures extends Fixture implements DependentFixtureInterface
 {
     public const TOURN_ACG = "tourn-acg";
 

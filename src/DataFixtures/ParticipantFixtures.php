@@ -2,37 +2,43 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Peloton;
+use App\Entity\Participant;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class ParticipantFixtures extends Fixture  implements DependentFixtureInterface
+class ParticipantFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $peloton = new Peloton();
-        $peloton->setpelotonNumber("414022");
-        $peloton->setpelotonSince(new \DateTime("10/01/2014"));
-        $peloton->setpelotonEnd(new \DateTime("09/30/2016"));
-        $peloton->setClub($this->getReference(ClubFixtures::CLUB_ITW));
-        $peloton->setArcher($this->getReference(ArcherFixtures::ARCHER_MP));
-        $manager->persist($peloton);
+        $participant = new Participant();
+        $participant->setArcher($this->getReference(ArcherFixtures::ARCHER_MP));
+        $participant->setPeloton($this->getReference(PelotonFixtures::PELOTON_AGC_1));
+        $participant->setCategory($this->getReference(ArcherCategoryFixtures::CAT_RH1));
+        $participant->setPoints(0);
+        $participant->setNumberOfTen(0);
+        $participant->setIsForfeited(false);
 
-        $peloton = new Peloton();
-        $peloton->setpelotonNumber("89H01558");
-        $peloton->setpelotonSince(new \DateTime("10/01/2016"));
-        $peloton->setClub($this->getReference(ClubFixtures::CLUB_LIE));
-        $peloton->setArcher($this->getReference(ArcherFixtures::ARCHER_MP));
-        $manager->persist($peloton);
+        $manager->persist($participant);
 
-        $manager->flush();
+        $participant = new Participant();
+        $participant->setArcher($this->getReference(ArcherFixtures::ARCHER_GC));
+        $participant->setPeloton($this->getReference(PelotonFixtures::PELOTON_AGC_2));
+        $participant->setCategory($this->getReference(ArcherCategoryFixtures::CAT_RH2));
+        $participant->setPoints(0);
+        $participant->setNumberOfTen(0);
+        $participant->setIsForfeited(false);
+
+        $manager->persist($participant);
+
+        $manager->flush($participant);
     }
 
     public function getDependencies()
     {
         return array(
-            TournemantFixtures::class,
+            ArcherCategoryFixtures::class,
+            PelotonFixtures::class,            
             ArcherFixtures::class,
         );
     }

@@ -1,9 +1,10 @@
 {
     "devDependencies": {
-        "@fortawesome/fontawesome-pro": "^5.1.0-4",
+        "@fortawesome/fontawesome-pro": "^5.3.1",
         "@symfony/webpack-encore": "^0.20.1",
-        "node-sass": "^4.9.0",
-        "sass-loader": "^7.0.3"
+        "node-sass": "^4.9.3",
+        "sass-loader": "^7.1.0",
+        "yarn": "^1.9.4"
     },
     "name": "myarchery",
     "author": "Valdior",
