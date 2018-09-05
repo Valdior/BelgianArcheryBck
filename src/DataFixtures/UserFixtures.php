@@ -6,8 +6,9 @@ use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class UserFixtures extends Fixture
+class UserFixtures extends Fixture implements DependentFixtureInterface
 {
     public const USER_ADMIN = "user-admin";
     public const USER_USER = "user-user";
@@ -25,6 +26,7 @@ class UserFixtures extends Fixture
         $user->setEmail("valdior@outlook.com");
         $password = $this->encoder->encodePassword($user, 'admin');
         $user->setPassword($password);
+        $user->setArcher($this->getReference(ArcherFixtures::ARCHER_MP));
 
         $manager->persist($user);
 
@@ -41,5 +43,12 @@ class UserFixtures extends Fixture
         $this->addReference(self::USER_USER, $user);
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return array(
+            ArcherFixtures::class,
+        );
     }
 }
