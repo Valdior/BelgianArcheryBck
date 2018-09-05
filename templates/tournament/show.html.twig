@@ -44,7 +44,11 @@
                         <td>#{{ loop.index }}</td>
                         <td>{{ peloton.starttime|date('d-m-Y H:i') }}</td>
                         <td>{{ peloton.type }}</td>
-                        <td><a href="{{ path('peloton_show', {'tournament': tournament.id, 'id' : peloton.id}) }}" >Show</a> S'inscrire</td>
+                        <td><a href="{{ path('peloton_show', {'tournament': tournament.id, 'id' : peloton.id}) }}" >Show</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="...">S'inscrire</a>
+                        {% endif %}
+                        </td>
                     </tr>
                 {% else %}
                     <tr>
