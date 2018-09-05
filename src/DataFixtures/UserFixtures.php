@@ -27,6 +27,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $password = $this->encoder->encodePassword($user, 'admin');
         $user->setPassword($password);
         $user->setArcher($this->getReference(ArcherFixtures::ARCHER_MP));
+        $user->addRole("ROLE_ADMIN");
 
         $manager->persist($user);
 
@@ -37,6 +38,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user->setEmail("user@user.com");
         $password = $this->encoder->encodePassword($user, 'user');
         $user->setPassword($password);
+        $user->setArcher($this->getReference(ArcherFixtures::ARCHER_GC));
+        $user->addRole("ROLE_ARCHER");
 
         $manager->persist($user);
 
