@@ -8,11 +8,7 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ peloton.id }}</td>
-            </tr>
-            <tr>
-                <th>MaxParticipant</th>
+                <th>Max Participant</th>
                 <td>{{ peloton.maxParticipant }}</td>
             </tr>
             <tr>
@@ -20,7 +16,7 @@
                 <td>{{ peloton.type }}</td>
             </tr>
             <tr>
-                <th>StartTime</th>
+                <th>Start Time</th>
                 <td>{{ peloton.startTime ? peloton.startTime|date('H:i:s') : '' }}</td>
             </tr>
         </tbody>

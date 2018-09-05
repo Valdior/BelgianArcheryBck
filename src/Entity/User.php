@@ -118,6 +118,25 @@ class User implements UserInterface
         return $this->roles;
     }
 
+    /**
+     * Add role
+     */ 
+    public function addRole(string $role): void
+    {
+        $this->roles[] = $role;
+    }
+    /**
+     * Remove role
+     */ 
+    public function removeRole(string $role)
+    {
+        $this->roles->removeElement($role);
+    }
+    public function setRoles(array $roles): void
+    {
+        $this->roles = $roles;
+    }
+
     public function eraseCredentials()
     {
     }
@@ -135,5 +154,10 @@ class User implements UserInterface
     public function isArcher()
     {
         return $this->archer != null;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 }
