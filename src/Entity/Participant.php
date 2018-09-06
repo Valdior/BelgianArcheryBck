@@ -67,6 +67,9 @@ class Participant
     public function __construct()
     {
         $this->pelotons = new ArrayCollection();
+        $this->points = 0;
+        $this->numberOfTen = 0;
+        $this->isForfeited = false;
     }
 
     public function getId()

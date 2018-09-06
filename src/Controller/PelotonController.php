@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Peloton;
 use App\Form\PelotonType;
+use App\Entity\Participant;
+use App\Form\ParticipantType;
 use App\Entity\Tournament;
 use App\Repository\PelotonRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -81,5 +83,32 @@ class PelotonController extends Controller
         }
 
         return $this->redirectToRoute('tournament_show', ['id' => $tournament->getId()]);
+    }
+
+    /**
+     * @Route("/{id}/register", name="peloton_register", methods="GET|POST")
+     */
+    public function register(Tournament $tournament, Peloton $peloton, Request $request): Response
+    {
+        $participant = new Participant();
+        $form = $this->createForm(ParticipantType::class, $participant);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $participant->setPeloton($peloton);
+            $participant->setArcher($this->getUser()->getArcher());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($participant);
+            $em->flush();
+
+            return $this->redirectToRoute('tournament_show', ['id' => $tournament->getId()]);
+        }
+
+        return $this->render('participant/register.html.twig', [
+            'participant' => $participant,
+            'peloton' => $peloton,
+            'tournament' => $tournament,
+            'form' => $form->createView(),
+        ]);
     }
 }

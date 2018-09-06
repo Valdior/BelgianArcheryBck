@@ -143,7 +143,7 @@ class User implements UserInterface
 
     public function getArcher() : ?Archer
     {
-        return $this->password;
+        return $this->archer;
     }
 
     public function setArcher(Archer $archer)
