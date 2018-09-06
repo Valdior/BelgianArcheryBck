@@ -11,6 +11,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class UserFixtures extends Fixture implements DependentFixtureInterface
 {
     public const USER_ADMIN = "user-admin";
+    public const USER_ARCHER = "user-archer";
     public const USER_USER = "user-user";
     private $encoder;
 
@@ -34,12 +35,22 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $this->addReference(self::USER_ADMIN, $user);
 
         $user = new User();
+        $user->setUsername("archer");
+        $user->setEmail("archer@user.com");
+        $password = $this->encoder->encodePassword($user, 'archer');
+        $user->setPassword($password);
+        $user->setArcher($this->getReference(ArcherFixtures::ARCHER_GC));
+        $user->addRole("ROLE_ARCHER");
+
+        $manager->persist($user);
+
+        $this->addReference(self::USER_ARCHER, $user);
+
+        $user = new User();
         $user->setUsername("user");
         $user->setEmail("user@user.com");
         $password = $this->encoder->encodePassword($user, 'user');
         $user->setPassword($password);
-        $user->setArcher($this->getReference(ArcherFixtures::ARCHER_GC));
-        $user->addRole("ROLE_ARCHER");
 
         $manager->persist($user);
 

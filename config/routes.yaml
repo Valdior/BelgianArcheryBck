@@ -6,6 +6,9 @@ index:
    path: /
    controller: App\Controller\PagesController::index
 
+logout:
+   path: /logout
+
 posts.index:
    path: /posts
    controller: App\Controller\PostsController::index
