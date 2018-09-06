@@ -10,6 +10,11 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class RegionFixtures extends Fixture implements DependentFixtureInterface
 {
     public const REGION_LIEGE = 'liege';
+    public const REGION_BRABAN = 'braban';
+    public const REGION_BXL = 'bxl';
+    public const REGION_HAINAUT = 'hainaut';
+    public const REGION_LXG = 'lxg';
+    public const REGION_NAMUR = 'namur';
 
     public function load(ObjectManager $manager)
     {
@@ -27,11 +32,15 @@ class RegionFixtures extends Fixture implements DependentFixtureInterface
         $region->setLeague($this->getReference(LeagueFixtures::LEAGUE_LFBTA));
         $manager->persist($region);
 
+        $this->addReference(self::REGION_BRABAN, $region);
+
         $region = new Region();
         $region->setName("Bruxelles-Capitale");
         $region->setNumber(2);
         $region->setLeague($this->getReference(LeagueFixtures::LEAGUE_LFBTA));
         $manager->persist($region);
+
+        $this->addReference(self::REGION_BXL, $region);
 
         $region = new Region();
         $region->setName("Hainaut");
@@ -39,17 +48,23 @@ class RegionFixtures extends Fixture implements DependentFixtureInterface
         $region->setLeague($this->getReference(LeagueFixtures::LEAGUE_LFBTA));
         $manager->persist($region);
 
+        $this->addReference(self::REGION_HAINAUT, $region);
+
         $region = new Region();
         $region->setName("Luxembourg");
         $region->setNumber(6);
         $region->setLeague($this->getReference(LeagueFixtures::LEAGUE_LFBTA));
         $manager->persist($region);
 
+        $this->addReference(self::REGION_LXG, $region);
+
         $region = new Region();
         $region->setName("Namur");
         $region->setNumber(7);
         $region->setLeague($this->getReference(LeagueFixtures::LEAGUE_LFBTA));
-        $manager->persist($region);        
+        $manager->persist($region); 
+        
+        $this->addReference(self::REGION_NAMUR, $region);
 
         $manager->flush();
     }

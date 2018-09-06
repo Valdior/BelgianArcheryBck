@@ -20,7 +20,7 @@ class ClubController extends Controller
      */
     public function index(ClubRepository $clubRepository): Response
     {
-        return $this->render('club/index.html.twig', ['clubs' => $clubRepository->findAll()]);
+        return $this->render('club/index.html.twig', ['clubs' => $clubRepository->findBy(array(), array('number' => 'ASC'))]);
     }
 
     /**
