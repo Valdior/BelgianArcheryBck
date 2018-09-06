@@ -12,6 +12,10 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
     public const CLUB_LIE = "club-lie";
     public const CLUB_ITW = "club-itw";
     public const CLUB_ACG = "club-acg";
+    public const CLUB_FBG = "club-fbg";
+    public const CLUB_BEA = "club-bea";
+    public const CLUB_CAB = "club-cab";
+    public const CLUB_ADS = "club-ads";
     
     public function load(ObjectManager $manager)
     {
@@ -112,6 +116,8 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
         $club->setNumber(303);
         $club->setRegion($this->getReference(RegionFixtures::REGION_HAINAUT));
         $manager->persist($club);
+        
+        $this->addReference(self::CLUB_BEA, $club);
 
         $club = new Club();
         $club->setName("Club des Archers de Tournai");
@@ -335,7 +341,9 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
         $club->setAcronym("FBG");
         $club->setNumber(703);
         $club->setRegion($this->getReference(RegionFixtures::REGION_NAMUR));
-        $manager->persist($club);
+        $manager->persist($club);        
+
+        $this->addReference(self::CLUB_FBG, $club);
 
         $club = new Club();
         $club->setName("Arrow Tabora Namur");
@@ -350,6 +358,8 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
         $club->setNumber(705);
         $club->setRegion($this->getReference(RegionFixtures::REGION_NAMUR));
         $manager->persist($club);
+
+        $this->addReference(self::CLUB_CAB, $club);
 
         $club = new Club();
         $club->setName("Les Bons Tireûs d’Seuris");
@@ -419,6 +429,8 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
         $club->setNumber(411);
         $club->setRegion($this->getReference(RegionFixtures::REGION_LIEGE));
         $manager->persist($club);
+
+        $this->addReference(self::CLUB_ADS, $club);
 
         $club = new Club();
         $club->setName("Intertir Welkenraedt");
