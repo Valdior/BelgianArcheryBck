@@ -23,8 +23,10 @@
                 <td>{{ tournament.endDate ? tournament.endDate|date('Y-m-d') : '' }}</td>
                 <td>{{ tournament.type }}</td>
                 <td>
-                    <a href="{{ path('tournament_show', {'id': tournament.id}) }}">show</a>
+                    <a href="{{ path('tournament_show', {'id': tournament.id}) }}">show</a>                    
+                {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('tournament_edit', {'id': tournament.id}) }}">edit</a>
+                {% endif %} 
                 </td>
             </tr>
         {% else %}
@@ -35,5 +37,8 @@
         </tbody>
     </table>
 
+{% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('tournament_new') }}">Create new</a>
+{% endif %}      
+    
 {% endblock %}

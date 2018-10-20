@@ -68,23 +68,34 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Lastname</th>
-                        <th>Firstname</th>
-                        <th>Status</th>
-                        <th>actions</th>
+                        <th>Organisateur</th>
+                        <th>Catégorie</th>
+                        <th>10</th>
+                        <th>Points</th>
                     </tr>
                 </thead>
                 <tbody>
-                
+                {% for competition in archer.competitions | reverse %}
+                    <tr>
+                        <td>{{ competition.peloton.tournament.organizer.acronym }}</td>
+                        <td>{{ competition.category.acronym }}</td>
+                        <td>{{ competition.numberoften }}</td>
+                        <td>{{ competition.points }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </section>
     </div>
 
     <a href="{{ path('archer_index') }}">back to list</a>
-
+{% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('archer_edit', {'id': archer.id}) }}">edit</a>
 
     {{ include('archer/_delete_form.html.twig') }}
+{% endif %}
 {% endblock %}

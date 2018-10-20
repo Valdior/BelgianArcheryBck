@@ -24,7 +24,9 @@
                 <td>{{ archer.status }}</td>
                 <td>
                     <a href="{{ path('archer_show', {'id': archer.id}) }}">show</a>
+                {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('archer_edit', {'id': archer.id}) }}">edit</a>
+                {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -35,5 +37,7 @@
         </tbody>
     </table>
 
+{% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('archer_new') }}">Create new</a>
+{% endif %}
 {% endblock %}
