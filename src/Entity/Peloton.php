@@ -41,7 +41,7 @@ class Peloton
     private $startTime;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Tournament", inversedBy="tournament")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Tournament", inversedBy="pelotons")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tournament;

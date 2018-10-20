@@ -20,7 +20,7 @@ class TournamentController extends Controller
      */
     public function index(TournamentRepository $tournamentRepository): Response
     {
-        return $this->render('tournament/index.html.twig', ['tournaments' => $tournamentRepository->findAll()]);
+        return $this->render('tournament/index.html.twig', ['tournaments' => $tournamentRepository->findBy(array(), array('startDate' => 'ASC'))]);
     }
 
     /**
