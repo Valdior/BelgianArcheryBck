@@ -12,6 +12,9 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
     public const CLUB_LIE = "club-lie";
     public const CLUB_ITW = "club-itw";
     public const CLUB_ACG = "club-acg";
+    public const CLUB_ADS = "club-ads";
+    public const CLUB_MDY = "club-mdy";
+    public const CLUB_HUY = "club-huy";
     
     public function load(ObjectManager $manager)
     {
@@ -30,6 +33,8 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
         $club->setNumber(402);
         $club->setRegion($this->getReference(RegionFixtures::REGION_LIEGE));
         $manager->persist($club);
+
+        $this->addReference(self::CLUB_HUY, $club);
 
         $club = new Club();
         $club->setName("Compagnie Royale d’Archers Liège");
@@ -68,6 +73,8 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
         $club->setRegion($this->getReference(RegionFixtures::REGION_LIEGE));
         $manager->persist($club);
 
+        $this->addReference(self::CLUB_ADS, $club);
+
         $club = new Club();
         $club->setName("Intertir Welkenraedt");
         $club->setAcronym("ITW");
@@ -104,6 +111,8 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
         $club->setNumber(420);
         $club->setRegion($this->getReference(RegionFixtures::REGION_LIEGE));
         $manager->persist($club);
+
+        $this->addReference(self::CLUB_MDY, $club);
 
         $manager->flush();
     }

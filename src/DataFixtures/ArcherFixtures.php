@@ -10,6 +10,8 @@ class ArcherFixtures extends Fixture
 {
     public const ARCHER_MP = "archer-mp";
     public const ARCHER_GC = "archer-gc";
+    public const ARCHER_LP = "archer-lp";
+    public const ARCHER_BA = "archer-ba";
 
     public function load(ObjectManager $manager)
     {
@@ -28,6 +30,22 @@ class ArcherFixtures extends Fixture
         $manager->persist($archer);
 
         $this->addReference(self::ARCHER_GC, $archer);
+
+        $archer = new Archer();
+        $archer->setLastname("Lorquet");
+        $archer->setFirstname("Philippe");
+        $archer->setStatus(1);
+        $manager->persist($archer);
+
+        $this->addReference(self::ARCHER_LP, $archer);
+
+        $archer = new Archer();
+        $archer->setLastname("Bardoul");
+        $archer->setFirstname("Andy");
+        $archer->setStatus(1);
+        $manager->persist($archer);
+
+        $this->addReference(self::ARCHER_BA, $archer);
 
         $manager->flush();
     }
