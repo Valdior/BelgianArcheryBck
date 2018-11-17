@@ -91,12 +91,15 @@ class PelotonController extends Controller
     public function register(Tournament $tournament, Peloton $peloton, Request $request): Response
     {
         $participant = new Participant();
-        $form = $this->createForm(ParticipantType::class, $participant);
+        $form = $this->createForm(ParticipantType::class, $participant, array('user' => $this->getUser()));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $participant->setPeloton($peloton);
-            $participant->setArcher($this->getUser()->getArcher());
+
+            if(!in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
+                $participant->setArcher($this->getUser()->getArcher());
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($participant);
             $em->flush();

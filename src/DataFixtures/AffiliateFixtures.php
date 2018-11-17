@@ -38,6 +38,7 @@ class AffiliateFixtures extends Fixture  implements DependentFixtureInterface
         $affiliate->setAffiliateSince(new \DateTime("01/01/2010"));
         $affiliate->setClub($this->getReference(ClubFixtures::CLUB_ITW));
         $affiliate->setArcher($this->getReference(ArcherFixtures::ARCHER_BA));
+        $manager->persist($affiliate);
 
         $affiliate = new Affiliate();
         $affiliate->setAffiliateNumber("83H01527");

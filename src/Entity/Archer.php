@@ -159,4 +159,9 @@ class Archer
     {
         return $this->getlastname() . ' ' . $this->getFirstname(); 
     }
+
+    public function __ToString()
+    {
+        return $this->getFullname(); 
+    }
 }
