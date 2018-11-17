@@ -18,6 +18,8 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
     public const CLUB_BEA = "club-bea";
     public const CLUB_CAB = "club-cab";
     public const CLUB_ADS = "club-ads";
+    public const CLUB_CMA = "club-cma";
+    public const CLUB_GSR = "club-gsr";
     
     public function load(ObjectManager $manager)
     {
@@ -49,6 +51,8 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
         $club->setRegion($this->getReference(RegionFixtures::REGION_BRABAN));
         $manager->persist($club);
 
+        $this->addReference(self::CLUB_CMA, $club);
+
         $club = new Club();
         $club->setName("Les Archers de Jodoigne");
         $club->setAcronym("ACG");
@@ -76,6 +80,8 @@ class ClubFixtures extends Fixture implements DependentFixtureInterface
         $club->setNumber(203);
         $club->setRegion($this->getReference(RegionFixtures::REGION_BXL));
         $manager->persist($club);
+
+        $this->addReference(self::CLUB_GSR, $club);
 
         $club = new Club();
         $club->setName("De Gouden Pijl Evere");

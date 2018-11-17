@@ -19,7 +19,7 @@ class ParticipantController extends AbstractController
      */
     public function edit(Request $request, Tournament $tournament, Participant $participant)
     {
-        $form = $this->createForm(ParticipantType::class, $participant);
+        $form = $this->createForm(ParticipantType::class, $participant, array('user' => $this->getUser()));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

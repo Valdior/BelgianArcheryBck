@@ -15,21 +15,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ParticipantType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        dump($options);
+    {        
         $user = $options['user'];
         $roles = $user->getRoles();
         if (in_array('ROLE_ADMIN', $roles)) 
             $builder->add('archer', EntityType::class, array(
                 'class' => Archer::class,
-                'data' => $user->getArcher(),
             ));
 
         $builder
             ->add('category')
         ;
-
-        dump($builder);
 
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
@@ -45,7 +41,10 @@ class ParticipantType extends AbstractType
                         ->add('numberOfNine')
                         ->add('points')
                         ->add('isForfeited')
-                    ;
+                        ->add('archer', null, array(
+                            'disabled' => true,
+                        ))
+                    ;                    
                 }
             }
         );

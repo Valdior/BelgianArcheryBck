@@ -11,6 +11,8 @@ class PelotonFixtures extends Fixture implements DependentFixtureInterface
 {
     public const PELOTON_AGC_1 = "PELOTON_AGC_1";
     public const PELOTON_AGC_2 = "PELOTON_AGC_2";
+    public const PELOTON_CMA = "PELOTON_CMA";
+    public const PELOTON_GSR = "PELOTON_GSR";
 
     public function load(ObjectManager $manager)
     {
@@ -29,6 +31,8 @@ class PelotonFixtures extends Fixture implements DependentFixtureInterface
         $peloton->setStartTime(new \DateTime("09/09/2018 13:30:00"));
         $peloton->setTournament($this->getReference(TournamentFixtures::TOURN_ACG));
         $manager->persist($peloton);
+
+        $this->addReference(self::PELOTON_AGC_2, $peloton);
 
         $peloton = new Peloton();
         $peloton->setMaxParticipant(28);
@@ -196,6 +200,59 @@ class PelotonFixtures extends Fixture implements DependentFixtureInterface
         $peloton->setType(Peloton::TYPE_18);
         $peloton->setStartTime(new \DateTime("10/14/2018 14:00:00"));
         $peloton->setTournament($this->getReference(TournamentFixtures::TOURN_CAB));
+        $manager->persist($peloton);
+
+        $peloton = new Peloton();
+        $peloton->setMaxParticipant(30);
+        $peloton->setType(Peloton::TYPE_18);
+        $peloton->setStartTime(new \DateTime("10/10/2018 13:15:00"));
+        $peloton->setTournament($this->getReference(TournamentFixtures::TOURN_CMA));
+        $manager->persist($peloton);
+
+        $peloton = new Peloton();
+        $peloton->setMaxParticipant(30);
+        $peloton->setType(Peloton::TYPE_18);
+        $peloton->setStartTime(new \DateTime("10/10/2018 18:15:00"));
+        $peloton->setTournament($this->getReference(TournamentFixtures::TOURN_CMA));
+        $manager->persist($peloton);
+
+        $this->addReference(self::PELOTON_CMA, $peloton);
+
+        $peloton = new Peloton();
+        $peloton->setMaxParticipant(30);
+        $peloton->setType(Peloton::TYPE_18);
+        $peloton->setStartTime(new \DateTime("10/11/2018 09:15:00"));
+        $peloton->setTournament($this->getReference(TournamentFixtures::TOURN_CMA));
+        $manager->persist($peloton);
+
+        $peloton = new Peloton();
+        $peloton->setMaxParticipant(30);
+        $peloton->setType(Peloton::TYPE_18);
+        $peloton->setStartTime(new \DateTime("10/11/2018 13:45:00"));
+        $peloton->setTournament($this->getReference(TournamentFixtures::TOURN_CMA));
+        $manager->persist($peloton);
+
+        $peloton = new Peloton();
+        $peloton->setMaxParticipant(30);
+        $peloton->setType(Peloton::TYPE_18);
+        $peloton->setStartTime(new \DateTime("10/10/2018 18:00:00"));
+        $peloton->setTournament($this->getReference(TournamentFixtures::TOURN_GSR));
+        $manager->persist($peloton);
+
+        $this->addReference(self::PELOTON_GSR, $peloton);
+
+        $peloton = new Peloton();
+        $peloton->setMaxParticipant(30);
+        $peloton->setType(Peloton::TYPE_18);
+        $peloton->setStartTime(new \DateTime("10/11/2018 09:00:00"));
+        $peloton->setTournament($this->getReference(TournamentFixtures::TOURN_GSR));
+        $manager->persist($peloton);
+
+        $peloton = new Peloton();
+        $peloton->setMaxParticipant(30);
+        $peloton->setType(Peloton::TYPE_18);
+        $peloton->setStartTime(new \DateTime("10/11/2018 14:00:00"));
+        $peloton->setTournament($this->getReference(TournamentFixtures::TOURN_GSR));
         $manager->persist($peloton);
 
         $manager->flush();

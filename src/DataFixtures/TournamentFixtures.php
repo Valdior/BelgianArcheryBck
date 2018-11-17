@@ -22,6 +22,8 @@ class TournamentFixtures extends Fixture implements DependentFixtureInterface
     public const TOURN_FBG = "tourn-fbg";
     public const TOURN_BEA = "tourn-bea";
     public const TOURN_CAB = "tounr-cab";
+    public const TOURN_CMA = "tounr-cma";
+    public const TOURN_GSR = "tounr-gsr";
 
     public function load(ObjectManager $manager)
     {
@@ -130,6 +132,24 @@ class TournamentFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($tournament);
 
         $this->addReference(self::TOURN_CAB, $tournament);
+
+        $tournament = new Tournament();
+        $tournament->setStartDate(new \DateTime("11/10/2018"));
+        $tournament->setEndDate(new \DateTime("11/11/2018"));
+        $tournament->setType(Tournament::TYPE_INDOOR);
+        $tournament->setOrganizer($this->getReference(ClubFixtures::CLUB_CMA));
+        $manager->persist($tournament);
+
+        $this->addReference(self::TOURN_CMA, $tournament);
+
+        $tournament = new Tournament();
+        $tournament->setStartDate(new \DateTime("12/08/2018"));
+        $tournament->setEndDate(new \DateTime("12/09/2018"));
+        $tournament->setType(Tournament::TYPE_INDOOR);
+        $tournament->setOrganizer($this->getReference(ClubFixtures::CLUB_GSR));
+        $manager->persist($tournament);
+
+        $this->addReference(self::TOURN_GSR, $tournament);
 
         $manager->flush();
     }
