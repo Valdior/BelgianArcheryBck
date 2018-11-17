@@ -14,11 +14,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="">Accueil <span class="sr-only">(current)</span></a></li>
-        <li><a href="">Post</a></li>
-        <li><a href="{{ path('club_index')}}">Club</a></li>
-        <li><a href="{{ path('archer_index')}}">Archer</a></li>
-        <li><a href="{{ path('tournament_index')}}">Compétition</a></li>
+        <li {% if current_menu is defined and current_menu == 'accueil' %} class="active" {% endif %}><a href="{{ path('index')}}">Accueil <span class="sr-only">(current)</span></a></li>
+        <li {% if current_menu is defined and current_menu == 'post' %} class="active" {% endif %}><a href="">Post</a></li>
+        <li {% if current_menu is defined and current_menu == 'club' %} class="active" {% endif %}><a href="{{ path('club_index')}}">Club</a></li>
+        <li {% if current_menu is defined and current_menu == 'archer' %} class="active" {% endif %}><a href="{{ path('archer_index')}}">Archer</a></li>
+        <li {% if current_menu is defined and current_menu == 'tournament' %} class="active" {% endif %}><a href="{{ path('tournament_index')}}">Compétition</a></li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">

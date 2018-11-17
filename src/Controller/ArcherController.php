@@ -20,7 +20,7 @@ class ArcherController extends Controller
      */
     public function index(ArcherRepository $archerRepository): Response
     {
-        return $this->render('archer/index.html.twig', ['archers' => $archerRepository->findAll()]);
+        return $this->render('archer/index.html.twig', ['current_menu' => 'archer', 'archers' => $archerRepository->findAll()]);
     }
 
     /**
@@ -41,6 +41,7 @@ class ArcherController extends Controller
         }
 
         return $this->render('archer/new.html.twig', [
+            'current_menu' => 'archer', 
             'archer' => $archer,
             'form' => $form->createView(),
         ]);
@@ -69,6 +70,7 @@ class ArcherController extends Controller
         }
 
         return $this->render('archer/edit.html.twig', [
+            'current_menu' => 'archer', 
             'archer' => $archer,
             'form' => $form->createView(),
         ]);

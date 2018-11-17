@@ -26,8 +26,11 @@
        <thead>
             <tr>
                 <th>Club</th>
-                <th>Peloton</th>
                 <th>Full Name</th>
+                <th>Total</th>
+                <th>10</th>
+                <th>9</th>
+                <th>Action<th>
             </tr>
         </thead>
         <tbody>
@@ -35,8 +38,11 @@
             <tr>
             {% set foo = participant.archer.affiliations|reverse|first %}
                 <td>{{ foo.club.acronym }}</td>
-                <td>{{ participant.peloton }}</td>
                 <td>{{ participant.archer.fullname }}</td>
+                <td>{{ participant.points }}</td>
+                <td>{{ participant.numberoften }}</td>
+                <td>{{ participant.numberofnine }}</td>
+                <td><a href="{{ path('participant_edit', {'tournament' : peloton.tournament.id, 'id': participant.id}) }}">Modifier</a></td>
             </tr>
         {% else %}
             <tr>

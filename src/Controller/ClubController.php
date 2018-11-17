@@ -20,7 +20,7 @@ class ClubController extends Controller
      */
     public function index(ClubRepository $clubRepository): Response
     {
-        return $this->render('club/index.html.twig', ['clubs' => $clubRepository->findBy(array(), array('number' => 'ASC'))]);
+        return $this->render('club/index.html.twig', ['current_menu' => 'club', 'clubs' => $clubRepository->findBy(array(), array('number' => 'ASC'))]);
     }
 
     /**
@@ -41,6 +41,7 @@ class ClubController extends Controller
         }
 
         return $this->render('club/new.html.twig', [
+            'current_menu' => 'club', 
             'club' => $club,
             'form' => $form->createView(),
         ]);
@@ -51,7 +52,7 @@ class ClubController extends Controller
      */
     public function show(Club $club): Response
     {
-        return $this->render('club/show.html.twig', ['club' => $club]);
+        return $this->render('club/show.html.twig', ['current_menu' => 'club', 'club' => $club]);
     }
 
     /**
@@ -69,6 +70,7 @@ class ClubController extends Controller
         }
 
         return $this->render('club/edit.html.twig', [
+            'current_menu' => 'club', 
             'club' => $club,
             'form' => $form->createView(),
         ]);

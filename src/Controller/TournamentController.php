@@ -20,7 +20,7 @@ class TournamentController extends Controller
      */
     public function index(TournamentRepository $tournamentRepository): Response
     {
-        return $this->render('tournament/index.html.twig', ['tournaments' => $tournamentRepository->findBy(array(), array('startDate' => 'ASC'))]);
+        return $this->render('tournament/index.html.twig', ['current_menu' => 'tournament', 'tournaments' => $tournamentRepository->findBy(array(), array('startDate' => 'ASC'))]);
     }
 
     /**
@@ -41,6 +41,7 @@ class TournamentController extends Controller
         }
 
         return $this->render('tournament/new.html.twig', [
+            'current_menu' => 'tournament', 
             'tournament' => $tournament,
             'form' => $form->createView(),
         ]);
@@ -51,7 +52,7 @@ class TournamentController extends Controller
      */
     public function show(Tournament $tournament): Response
     {
-        return $this->render('tournament/show.html.twig', ['tournament' => $tournament]);
+        return $this->render('tournament/show.html.twig', ['current_menu' => 'tournament', 'tournament' => $tournament]);
     }
 
     /**
@@ -69,6 +70,7 @@ class TournamentController extends Controller
         }
 
         return $this->render('tournament/edit.html.twig', [
+            'current_menu' => 'tournament', 
             'tournament' => $tournament,
             'form' => $form->createView(),
         ]);
