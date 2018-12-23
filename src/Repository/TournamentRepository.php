@@ -19,9 +19,9 @@ class TournamentRepository extends ServiceEntityRepository
         parent::__construct($registry, Tournament::class);
     }
 
-//    /**
-//     * @return Tournament[] Returns an array of Tournament objects
-//     */
+   /**
+    * @return Tournament[] Returns an array of Tournament objects
+    */
     /*
     public function findByExampleField($value)
     {

@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Club;
 use App\Form\ClubType;
+use App\Form\ClubSearchType;
 use App\Repository\ClubRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use App\Repository\RegionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * @Route("/club")
@@ -16,11 +18,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class ClubController extends Controller
 {
     /**
-     * @Route("/", name="club_index", methods="GET")
+     * @Route("/", name="club_index", methods="GET|POST")
      */
-    public function index(ClubRepository $clubRepository): Response
+    public function index(ClubRepository $clubRepository, RegionRepository $regionRepository, Request $request): Response
     {
-        return $this->render('club/index.html.twig', ['current_menu' => 'club', 'clubs' => $clubRepository->findBy(array(), array('number' => 'ASC'))]);
+        $club = new Club();
+        $clubs = null;
+        $form = $this->createForm(ClubSearchType::class, $club);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {           
+            $clubs = $clubRepository->findBy(['region' => $club->getRegion()], array('number' => 'ASC'));
+        }
+
+        return $this->render('club/index.html.twig', ['current_menu' => 'club', 'clubs' => $clubs, 'form' => $form->createView()]);
     }
 
     /**

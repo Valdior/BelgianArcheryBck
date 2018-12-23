@@ -22,16 +22,19 @@ class Club
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=10)
      */
     private $acronym;
 
     /**
+     * @var int
      * @ORM\Column(type="integer")
      */
     private $number;
@@ -57,6 +60,7 @@ class Club
         $this->members = new ArrayCollection();
         $this->tournaments = new ArrayCollection();
     }
+
 
     public function getId()
     {

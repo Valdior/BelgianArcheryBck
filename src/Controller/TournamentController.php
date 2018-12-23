@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Tournament;
+use App\Entity\Participant;
 use App\Form\TournamentType;
 use App\Repository\TournamentRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use App\Repository\ParticipantRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * @Route("/tournament")
@@ -88,5 +90,16 @@ class TournamentController extends Controller
         }
 
         return $this->redirectToRoute('tournament_index');
+    }
+
+    /**
+     * @Route("/{id}/ranking", name="tournament_ranking", methods="GET")
+     */
+    public function ranking(Tournament $tournament)
+    {
+        $participants = $this->getDoctrine()
+            ->getRepository(Participant::class)
+            ->ranking($tournament->getId());
+        return $this->render('tournament/ranking.html.twig', ['participants' => $participants]);
     }
 }

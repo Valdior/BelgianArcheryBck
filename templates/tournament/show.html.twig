@@ -26,6 +26,8 @@
         </tbody>
     </table>
 
+{#   #}
+    {% if date(tournament.endDate) > date("now") or is_granted('ROLE_ADMIN')   %}
     <div class="row">   
         <section class="col-md-6">
             <h3>Pelotons</h3>
@@ -61,33 +63,13 @@
             <a href="{{ path('peloton_new', {'tournament': tournament.id}) }}">Create new</a>
             {% endif %}
         </section>     
-        <section class="col-md-6">
-            <h3>Liste des participants</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Club</th>
-                        <th>Peloton</th>
-                        <th>Full Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for participant in tournament.listparticipants %}
-                    <tr>
-                    {% set foo = participant.archer.affiliations|reverse|first %}
-                        <td>{{ foo.club.acronym }}</td>
-                        <td>{{ participant.peloton }}</td>
-                        <td>{{ participant.archer.fullname }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="3">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </section>
+        
     </div>
+    {% endif %}
+
+    {% if date(tournament.endDate) < date("now") %}
+    {{ render(controller('App\\Controller\\TournamentController::ranking', {'id': tournament.id})) }}
+    {% endif %}
 
     <a href="{{ path('tournament_index') }}">back to list</a>
 {% if is_granted('ROLE_ADMIN') %}

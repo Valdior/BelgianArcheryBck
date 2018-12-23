@@ -163,20 +163,20 @@ class Tournament
     /**
      * @return Collection|Participant[]
      */
-    public function getListParticipants()
-    {
-        $listParticipants = new ArrayCollection();
-        if(!empty($this->getPelotons()))
-        {
-            foreach($this->getPelotons() as $peloton)
-            {
-                foreach($peloton->getParticipants() as $participant)
-                {
-                    $listParticipants->add($participant);
-                }
-            }
-        }
+    // public function getListParticipants()
+    // {
+    //     $listParticipants = new ArrayCollection();
+    //     if(!empty($this->getPelotons()))
+    //     {
+    //         foreach($this->getPelotons() as $peloton)
+    //         {
+    //             foreach($peloton->getParticipants() as $participant)
+    //             {
+    //                 $listParticipants->add($participant);
+    //             }
+    //         }
+    //     }
 
-        return $listParticipants;
-    }
+    //     return $listParticipants;
+    // }
 }

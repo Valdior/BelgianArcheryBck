@@ -17,6 +17,26 @@ class ParticipantRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Participant::class);
+    }    
+
+    /**
+     * @var Participant[]
+     * @return Participant[] Returns an array of Participant objects
+     */
+    public function ranking($idTournament): Array
+    {
+        return $this->createQueryBuilder('p')
+                    ->leftJoin('p.peloton', 'pel')
+                    ->andWhere('pel.tournament = :val')
+                        ->setParameter('val', $idTournament)
+                    ->OrderBy('p.category', 'ASC')
+                        ->addOrderBy('p.points', 'DESC')
+                        ->addOrderBy('p.numberOfX', 'DESC')
+                        ->addOrderBy('p.numberOfTen', 'DESC')
+                        ->addOrderBy('p.numberOfNine', 'DESC')
+                    ->getQuery()
+                    ->getResult()
+                ;
     }
 
 //    /**

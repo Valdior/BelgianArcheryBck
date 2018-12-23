@@ -19,8 +19,8 @@
         {% for tournament in tournaments %}
             <tr>
                 <td>{{ tournament.organizer.acronym }} - {{ tournament.organizer.name }}</td>
-                <td>{{ tournament.startDate ? tournament.startDate|date('Y-m-d') : '' }}</td>
-                <td>{{ tournament.endDate ? tournament.endDate|date('Y-m-d') : '' }}</td>
+                <td>{{ tournament.startDate ? tournament.startDate|date('d-m-Y') : '' }}</td>
+                <td>{{ tournament.endDate ? tournament.endDate|date('d-m-Y') : '' }}</td>
                 <td>{{ tournament.type }}</td>
                 <td>
                     <a href="{{ path('tournament_show', {'id': tournament.id}) }}">show</a>                    
