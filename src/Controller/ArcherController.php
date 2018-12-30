@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Archer;
 use App\Form\ArcherType;
 use App\Repository\ArcherRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/archer")
  */
-class ArcherController extends Controller
+class ArcherController extends AbstractController
 {
     /**
      * @Route("/", name="archer_index", methods="GET")

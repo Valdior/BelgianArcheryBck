@@ -11,12 +11,12 @@ use App\Repository\PelotonRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/tournament/{tournament}/peloton")
  */
-class PelotonController extends Controller
+class PelotonController extends AbstractController
 {
     /**
      * @Route("/new", name="peloton_new", methods="GET|POST")

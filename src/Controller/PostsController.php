@@ -5,9 +5,9 @@ namespace App\Controller;
 use App\Entity\Post;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class PostsController extends Controller
+class PostsController extends AbstractController
 {
     public function index(RegistryInterface $doctrine)
     {

@@ -1,0 +1,41 @@
+
+{% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('tournament_new') }}">Create new</a>
+{% endif %}   
+
+    {% include '@FullCalendar/Calendar/calendar.html.twig' %}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale-all.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#calendar-holder').fullCalendar({
+                defaultView: 'month',
+                locale: 'fr',
+                header: {
+                    left: 'prev, next',
+                    center: 'title',
+                    right: 'prev, next',
+                },
+                timezone: ('Europe/London'),
+                allDaySlot: false,
+                lazyFetching: false,
+                navLinks: true,
+                eventSources: [
+                    {
+                        url: "{{ path('fullcalendar_load_events') }}",
+                        type: 'POST',
+                        data:  {
+                            filters: {}
+                        },
+                        error: function () {
+                            alert('There was an error while fetching FullCalendar!');
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
