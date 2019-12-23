@@ -19,7 +19,7 @@
         "@fortawesome/fontawesome-pro-light": "^5.0.13",
         "@fortawesome/fontawesome-pro-regular": "^5.0.13",
         "@fortawesome/fontawesome-pro-solid": "^5.0.13",
-        "bootstrap-sass": "^3.3.7",
+        "bootstrap-sass": "^3.4.1",
         "jquery": "^3.3.1"
     },
     "scripts": {
